@@ -1,0 +1,13 @@
+{
+  "name": "shadematch",
+  "version": "1.0.0",
+  "description": "Buy the right shade the first time: YouCam skin tone analysis + makeup virtual try-on.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18.17" },
+  "license": "MIT"
+}

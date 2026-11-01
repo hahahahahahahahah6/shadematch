@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShadeMatch</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="dot"></span>ShadeMatch</div>
+    <span class="powered">Powered by YouCam API</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Buy the right shade<br><em>the first time.</em></h1>
+      <p>Upload one selfie. YouCam AI reads your skin color, ShadeMatch picks foundation and lipstick shades, and you see them on your own face before you buy.</p>
+      <p class="privacy">🔒 Your photo is used only for this analysis. ShadeMatch does not save it. It is sent to YouCam for processing.</p>
+    </section>
+
+    <ol class="steps" id="steps">
+      <li data-step="1" class="active">Upload</li>
+      <li data-step="2">Skin analysis</li>
+      <li data-step="3">Shades</li>
+      <li data-step="4">Try-on</li>
+    </ol>
+
+    <section class="card" id="upload">
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept="image/jpeg,image/png" hidden>
+        <img id="preview" alt="" hidden>
+        <div id="dropText">
+          <strong>Drop a selfie here</strong><span>or click to choose a JPG/PNG</span>
+          <small>Tips: face the camera, even light, face fills most of the photo, hair down.</small>
+        </div>
+      </label>
+      <button class="btn" id="analyzeBtn" disabled>Analyze my skin tone</button>
+      <button class="btn ghost" id="sampleBtn" hidden>Use sample photo</button>
+      <p class="warn" id="keyWarn" hidden>No YouCam API key found. Copy <code>.env.example</code> to <code>.env</code>, add your key, and restart.</p>
+    </section>
+
+    <section class="card" id="analysis" hidden>
+      <h2>Your skin analysis</h2>
+      <div class="skin">
+        <div class="swatch big" id="skinSwatch"></div>
+        <div>
+          <div class="kv"><span>Skin color</span><b id="skinHex"></b></div>
+          <div class="kv"><span>Undertone</span><b id="undertone"></b></div>
+          <div class="kv"><span>Depth</span><b id="depth"></b></div>
+          <p class="note">Skin color from YouCam AI Facial Color Tones Analyzer. Undertone and depth are ShadeMatch estimates from that color.</p>
+        </div>
+      </div>
+      <details><summary>Raw YouCam response</summary><pre id="raw"></pre></details>
+    </section>
+
+    <section class="card" id="shades" hidden>
+      <h2>Recommended shades</h2>
+      <h3>Foundation</h3>
+      <div class="grid" id="foundations"></div>
+      <h3>Lipstick</h3>
+      <div class="grid" id="lipsticks"></div>
+      <p class="honest">Visual preview, not a color guarantee — lighting affects results.</p>
+      <button class="btn" id="tryBtn">Try these on my photo</button>
+    </section>
+
+    <section class="card" id="tryon" hidden>
+      <h2>Virtual try-on</h2>
+      <div class="compare">
+        <figure><img id="before" alt="Original photo"><figcaption>Original</figcaption></figure>
+        <figure><img id="after" alt="Try-on result"><figcaption id="afterCap">With ShadeMatch picks</figcaption></figure>
+      </div>
+      <p class="honest">Visual preview, not a color guarantee — lighting affects results.</p>
+      <button class="btn ghost" id="restartBtn">Try another photo</button>
+    </section>
+
+    <div class="status" id="status" hidden></div>
+  </main>
+
+  <footer>Demo catalog shades are invented for this demo. ShadeMatch is an independent hackathon project using the YouCam API.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
